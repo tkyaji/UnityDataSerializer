@@ -1,0 +1,354 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B2C24ACC1C696ADF0074763E /* GZipUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C24ACB1C696ADF0074763E /* GZipUtil.m */; };
+		B2C24AD61C696C8A0074763E /* GZipUtilTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C24AD51C696C8A0074763E /* GZipUtilTest.m */; };
+		B2C24ADD1C696F430074763E /* GZipUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C24ACB1C696ADF0074763E /* GZipUtil.m */; };
+		B2C24ADF1C696FA40074763E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C24ADE1C696FA40074763E /* libz.tbd */; };
+		B2C24AE01C696FB00074763E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C24ADE1C696FA40074763E /* libz.tbd */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B2C24AC11C696AB00074763E /* GZipUtil.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GZipUtil.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2C24AC41C696AB00074763E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2C24ACA1C696ADF0074763E /* GZipUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZipUtil.h; sourceTree = "<group>"; };
+		B2C24ACB1C696ADF0074763E /* GZipUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZipUtil.m; sourceTree = "<group>"; };
+		B2C24AD31C696C8A0074763E /* GZipUtilTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GZipUtilTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2C24AD51C696C8A0074763E /* GZipUtilTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZipUtilTest.m; sourceTree = "<group>"; };
+		B2C24AD71C696C8A0074763E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2C24ADE1C696FA40074763E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B2C24ABE1C696AB00074763E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2C24ADF1C696FA40074763E /* libz.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2C24AD01C696C8A0074763E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2C24AE01C696FB00074763E /* libz.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B2C24AB81C696AB00074763E = {
+			isa = PBXGroup;
+			children = (
+				B2C24ADE1C696FA40074763E /* libz.tbd */,
+				B2C24AC31C696AB00074763E /* GZipUtil */,
+				B2C24AD41C696C8A0074763E /* GZipUtilTest */,
+				B2C24AC21C696AB00074763E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B2C24AC21C696AB00074763E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B2C24AC11C696AB00074763E /* GZipUtil.bundle */,
+				B2C24AD31C696C8A0074763E /* GZipUtilTest.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B2C24AC31C696AB00074763E /* GZipUtil */ = {
+			isa = PBXGroup;
+			children = (
+				B2C24AC41C696AB00074763E /* Info.plist */,
+				B2C24ACA1C696ADF0074763E /* GZipUtil.h */,
+				B2C24ACB1C696ADF0074763E /* GZipUtil.m */,
+			);
+			path = GZipUtil;
+			sourceTree = "<group>";
+		};
+		B2C24AD41C696C8A0074763E /* GZipUtilTest */ = {
+			isa = PBXGroup;
+			children = (
+				B2C24AD51C696C8A0074763E /* GZipUtilTest.m */,
+				B2C24AD71C696C8A0074763E /* Info.plist */,
+			);
+			path = GZipUtilTest;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B2C24AC01C696AB00074763E /* GZipUtil */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B2C24AC71C696AB00074763E /* Build configuration list for PBXNativeTarget "GZipUtil" */;
+			buildPhases = (
+				B2C24ABD1C696AB00074763E /* Sources */,
+				B2C24ABE1C696AB00074763E /* Frameworks */,
+				B2C24ABF1C696AB00074763E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GZipUtil;
+			productName = GZipUtil;
+			productReference = B2C24AC11C696AB00074763E /* GZipUtil.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		B2C24AD21C696C8A0074763E /* GZipUtilTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B2C24AD81C696C8A0074763E /* Build configuration list for PBXNativeTarget "GZipUtilTest" */;
+			buildPhases = (
+				B2C24ACF1C696C8A0074763E /* Sources */,
+				B2C24AD01C696C8A0074763E /* Frameworks */,
+				B2C24AD11C696C8A0074763E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GZipUtilTest;
+			productName = GZipUtilTest;
+			productReference = B2C24AD31C696C8A0074763E /* GZipUtilTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B2C24AB91C696AB00074763E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = tkyaji;
+				TargetAttributes = {
+					B2C24AC01C696AB00074763E = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					B2C24AD21C696C8A0074763E = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = B2C24ABC1C696AB00074763E /* Build configuration list for PBXProject "GZipUtil" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B2C24AB81C696AB00074763E;
+			productRefGroup = B2C24AC21C696AB00074763E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B2C24AC01C696AB00074763E /* GZipUtil */,
+				B2C24AD21C696C8A0074763E /* GZipUtilTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B2C24ABF1C696AB00074763E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2C24AD11C696C8A0074763E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B2C24ABD1C696AB00074763E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2C24ACC1C696ADF0074763E /* GZipUtil.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2C24ACF1C696C8A0074763E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2C24ADD1C696F430074763E /* GZipUtil.m in Sources */,
+				B2C24AD61C696C8A0074763E /* GZipUtilTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B2C24AC51C696AB00074763E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B2C24AC61C696AB00074763E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B2C24AC81C696AB00074763E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = GZipUtil/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tkyaji.GZipUtil;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		B2C24AC91C696AB00074763E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = GZipUtil/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tkyaji.GZipUtil;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		B2C24AD91C696C8A0074763E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = GZipUtilTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tkyaji.GZipUtilTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B2C24ADA1C696C8A0074763E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = GZipUtilTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tkyaji.GZipUtilTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B2C24ABC1C696AB00074763E /* Build configuration list for PBXProject "GZipUtil" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B2C24AC51C696AB00074763E /* Debug */,
+				B2C24AC61C696AB00074763E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B2C24AC71C696AB00074763E /* Build configuration list for PBXNativeTarget "GZipUtil" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B2C24AC81C696AB00074763E /* Debug */,
+				B2C24AC91C696AB00074763E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B2C24AD81C696C8A0074763E /* Build configuration list for PBXNativeTarget "GZipUtilTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B2C24AD91C696C8A0074763E /* Debug */,
+				B2C24ADA1C696C8A0074763E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B2C24AB91C696AB00074763E /* Project object */;
+}
