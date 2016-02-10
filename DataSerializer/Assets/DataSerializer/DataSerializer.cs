@@ -35,8 +35,8 @@ public class DataSerializer {
 	private Dictionary<string, CacheData> cacheDict = new Dictionary<string, CacheData> ();
 
 
-	public static void SaveData(string key, object data, bool withApply = false) {
-		instance.saveData (key, data);
+	public static void SetData(string key, object data, bool withApply = false) {
+		instance.setData (key, data);
 		if (withApply) {
 			instance.apply (key);
 		}
@@ -92,7 +92,7 @@ public class DataSerializer {
 		}
 	}
 
-	private void saveData(string key, object data) {
+	private void setData(string key, object data) {
 
 		if (!data.GetType().IsSerializable) {
 			throw new ArgumentException ("Argument object is not Serializable");
