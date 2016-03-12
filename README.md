@@ -14,7 +14,10 @@ public class Sample {
 	public static void execute() {
 		// enable encrypt data (option)
 		DataSerializer.EnableEncryption("abcdefghijklmnopqrstuvwxyz012345", "abcdefghijklmnop");
-
+		
+		// enable compression data (option)
+		DataSerializer.EnableCompression ();
+		
 		// set data
 		DataSerializer.SetData ("data", new Data (10, "test"));
 		DataSerializer.SetData ("int", 999);
