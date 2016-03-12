@@ -32,6 +32,7 @@ public class DataSerializer {
 	private string savePath;
 	private string cryptKey;
 	private string cryptIv;
+	private bool enableCompression;
 	private Dictionary<string, CacheData> cacheDict = new Dictionary<string, CacheData> ();
 
 
@@ -65,6 +66,10 @@ public class DataSerializer {
 		instance.enableEncryption (key, iv);
 	}
 
+	public static void EnableCompression(bool enable = true) {
+		instance.enableCompression = enable;
+	}
+
 	public static bool ExistsData(string key) {
 		return instance.existsData (key);
 	}
@@ -93,7 +98,6 @@ public class DataSerializer {
 	}
 
 	private void setData(string key, object data) {
-
 		if (!data.GetType().IsSerializable) {
 			throw new ArgumentException ("Argument object is not Serializable");
 		}
@@ -107,28 +111,15 @@ public class DataSerializer {
 	}
 
 	private T getData<T>(string key) {
-
-		if (cacheDict.ContainsKey (key)) {
-			CacheData cacheData = cacheDict [key];
-			if (cacheData.Disabled) {
-				return default(T);
-			} else {
-				return (T)cacheData.Data;
-			}
-		}
-
-		if (!existsData(key)) {
+		CacheData cacheData = getCacheData (key);
+		if (cacheData == null || cacheData.Disabled) {
 			return default(T);
 		}
-		T data = readFile<T> (key);
 
-		cacheDict.Add (key, new CacheData (data, true));
-
-		return data;
+		return (T)cacheData.Data;
 	}
 
 	private T getData<T>(string key, T defaultValue) {
-
 		if (!existsData (key)) {
 			return defaultValue;
 		}
@@ -145,9 +136,27 @@ public class DataSerializer {
 	}
 
 	private void removeData(string key) {
-		if (cacheDict.ContainsKey (key)) {
-			cacheDict [key].Disabled = true;
+		CacheData cacheData = getCacheData (key);
+		if (cacheData == null) {
+			return;
 		}
+		cacheData.Disabled = true;
+		cacheData.Saved = false;
+	}
+
+	private CacheData getCacheData(string key) {
+		if (cacheDict.ContainsKey (key)) {
+			return cacheDict [key];
+		}
+
+		if (!existsData (key)) {
+			return null;
+		}
+
+		object data = readFile<object> (key);
+		cacheDict.Add (key, new CacheData (data, true));
+
+		return cacheDict [key];
 	}
 
 	private void clearAllData() {
@@ -158,7 +167,13 @@ public class DataSerializer {
 		cacheDict.Clear ();
 	}
 
-	private void enableEncryption(string key, string iv) {
+	private void enableEncryption(string key, string iv = null) {
+		key = key.PadRight (32, ' ').Substring (0, 32);
+		if (iv == null) {
+			iv = key;
+		}
+		iv = iv.PadRight (16, ' ').Substring (0, 16);
+
 		cryptKey = key;
 		cryptIv = iv;
 	}
@@ -179,14 +194,11 @@ public class DataSerializer {
 	}
 
 	private void apply(string key) {
-		if (!cacheDict.ContainsKey (key)) {
+		CacheData cacheData = getCacheData (key);
+		if (cacheData == null || cacheData.Saved) {
 			return;
 		}
 
-		CacheData cacheData = cacheDict [key];
-		if (cacheData.Saved) {
-			return;
-		}
 		if (cacheData.Disabled) {
 			deleteFile (key);
 			cacheDict.Remove (key);
@@ -239,8 +251,10 @@ public class DataSerializer {
 			byte[] bytes = ms.ToArray ();
 
 #if ENABLE_COMPRESS_SERIALIZE_DATA
-			bytes = GZipUtil.Compress(bytes);
-			flag |= (byte)Flags.Compress;
+			if (enableCompression) {
+				bytes = GZipUtil.Compress(bytes);
+				flag |= (byte)Flags.Compress;
+			}
 #endif
 
 			if (cryptKey != null) {
@@ -280,6 +294,5 @@ public class DataSerializer {
 			this.Saved = false;
 			this.Disabled = false;
 		}
-
 	}
 }
