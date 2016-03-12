@@ -179,16 +179,18 @@ public class DataSerializer {
 	}
 
 	private void apply() {
-		foreach (KeyValuePair<string, CacheData> pair in cacheDict) {
-			if (pair.Value.Saved) {
+		List<string> keyList = new List<string> (cacheDict.Keys);
+		foreach (string key in keyList) {
+			CacheData cacheData = cacheDict [key];
+			if (cacheData.Saved) {
 				continue;
 			}
-			if (pair.Value.Disabled) {
-				deleteFile (pair.Key);
-				cacheDict.Remove (pair.Key);
+			if (cacheData.Disabled) {
+				deleteFile (key);
+				cacheDict.Remove (key);
 			} else {
-				writeFile (pair.Key, pair.Value.Data);
-				pair.Value.Saved = true;
+				writeFile (key, cacheData.Data);
+				cacheData.Saved = true;
 			}
 		}
 	}
