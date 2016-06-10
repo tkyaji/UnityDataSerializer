@@ -21,7 +21,7 @@ public class DataSerializer {
 	private static DataSerializer instance {
 		get {
 			if (_instance == null) {
-				_instance = new DataSerializer ();
+				_instance = new DataSerializer();
 			}
 			return _instance;
 		}
@@ -33,37 +33,37 @@ public class DataSerializer {
 	private string cryptKey;
 	private string cryptIv;
 	private bool enableCompression;
-	private Dictionary<string, CacheData> cacheDict = new Dictionary<string, CacheData> ();
+	private Dictionary<string, CacheData> cacheDict = new Dictionary<string, CacheData>();
 
 
 	public static void SetData(string key, object data, bool withApply = false) {
-		instance.setData (key, data);
+		instance.setData(key, data);
 		if (withApply) {
-			instance.apply (key);
+			instance.apply(key);
 		}
 	}
 
 	public static T GetData<T>(string key) {
-		return instance.getData<T> (key);
+		return instance.getData<T>(key);
 	}
 
 	public static T GetData<T>(string key, T defaultValue) {
-		return instance.getData<T> (key, defaultValue);
+		return instance.getData<T>(key, defaultValue);
 	}
 
 	public static void RemoveData(string key, bool withApply = false) {
-		instance.removeData (key);
+		instance.removeData(key);
 		if (withApply) {
-			instance.apply (key);
+			instance.apply(key);
 		}
 	}
 
 	public static void ClearAllData() {
-		instance.clearAllData ();
+		instance.clearAllData();
 	}
 
 	public static void EnableEncryption(string key, string iv = null) {
-		instance.enableEncryption (key, iv);
+		instance.enableEncryption(key, iv);
 	}
 
 	public static void EnableCompression(bool enable = true) {
@@ -71,47 +71,51 @@ public class DataSerializer {
 	}
 
 	public static bool ExistsData(string key) {
-		return instance.existsData (key);
+		return instance.existsData(key);
 	}
 
 	public static void Apply(string key = null) {
 		if (key == null) {
-			instance.apply ();
+			instance.apply();
 		} else {
-			instance.apply (key);
+			instance.apply(key);
 		}
 	}
 
 	public static void PreLoad(params string[] keys) {
 		foreach (string key in keys) {
-			instance.getData<object> (key);
+			instance.getData<object>(key);
 		}
+	}
+
+	public static string GetFilePath(string key) {
+		return instance.getFilePath(key);
 	}
 
 
 	private DataSerializer() {
 		Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");
-		savePath = Path.Combine (Application.persistentDataPath, saveDirectory);
-		if (!Directory.Exists (savePath)) {
-			Directory.CreateDirectory (savePath);
+		savePath = Path.Combine(Application.persistentDataPath, saveDirectory);
+		if (!Directory.Exists(savePath)) {
+			Directory.CreateDirectory(savePath);
 		}
 	}
 
 	private void setData(string key, object data) {
 		if (!data.GetType().IsSerializable) {
-			throw new ArgumentException ("Argument object is not Serializable");
+			throw new ArgumentException("Argument object is not Serializable");
 		}
 
-		if (cacheDict.ContainsKey (key)) {
-			cacheDict [key].ChangeData (data);
+		if (cacheDict.ContainsKey(key)) {
+			cacheDict[key].ChangeData(data);
 
 		} else {
-			cacheDict [key] = new CacheData (data);
+			cacheDict[key] = new CacheData(data);
 		}
 	}
 
 	private T getData<T>(string key) {
-		CacheData cacheData = getCacheData (key);
+		CacheData cacheData = getCacheData(key);
 		if (cacheData == null || cacheData.Disabled) {
 			return default(T);
 		}
@@ -120,23 +124,23 @@ public class DataSerializer {
 	}
 
 	private T getData<T>(string key, T defaultValue) {
-		if (!existsData (key)) {
+		if (!existsData(key)) {
 			return defaultValue;
 		}
 
-		return getData<T> (key);
+		return getData<T>(key);
 	}
 
 	private bool existsData(string key) {
-		if (cacheDict.ContainsKey (key)) {
+		if (cacheDict.ContainsKey(key)) {
 			return true;
 		}
-		string filePath = getFilePath (key);
-		return File.Exists (filePath);
+		string filePath = getFilePath(key);
+		return File.Exists(filePath);
 	}
 
 	private void removeData(string key) {
-		CacheData cacheData = getCacheData (key);
+		CacheData cacheData = getCacheData(key);
 		if (cacheData == null) {
 			return;
 		}
@@ -145,67 +149,67 @@ public class DataSerializer {
 	}
 
 	private CacheData getCacheData(string key) {
-		if (cacheDict.ContainsKey (key)) {
-			return cacheDict [key];
+		if (cacheDict.ContainsKey(key)) {
+			return cacheDict[key];
 		}
 
-		if (!existsData (key)) {
+		if (!existsData(key)) {
 			return null;
 		}
 
-		object data = readFile<object> (key);
-		cacheDict.Add (key, new CacheData (data, true));
+		object data = readFile<object>(key);
+		cacheDict.Add(key, new CacheData(data, true));
 
-		return cacheDict [key];
+		return cacheDict[key];
 	}
 
 	private void clearAllData() {
-		string[] files = Directory.GetFiles (savePath);
+		string[] files = Directory.GetFiles(savePath);
 		foreach (string file in files) {
-			File.Delete (file);
+			File.Delete(file);
 		}
-		cacheDict.Clear ();
+		cacheDict.Clear();
 	}
 
 	private void enableEncryption(string key, string iv = null) {
-		key = key.PadRight (32, ' ').Substring (0, 32);
+		key = key.PadRight(32, ' ').Substring(0, 32);
 		if (iv == null) {
 			iv = key;
 		}
-		iv = iv.PadRight (16, ' ').Substring (0, 16);
+		iv = iv.PadRight(16, ' ').Substring(0, 16);
 
 		cryptKey = key;
 		cryptIv = iv;
 	}
 
 	private void apply() {
-		List<string> keyList = new List<string> (cacheDict.Keys);
+		List<string> keyList = new List<string>(cacheDict.Keys);
 		foreach (string key in keyList) {
-			CacheData cacheData = cacheDict [key];
+			CacheData cacheData = cacheDict[key];
 			if (cacheData.Saved) {
 				continue;
 			}
 			if (cacheData.Disabled) {
-				deleteFile (key);
-				cacheDict.Remove (key);
+				deleteFile(key);
+				cacheDict.Remove(key);
 			} else {
-				writeFile (key, cacheData.Data);
+				writeFile(key, cacheData.Data);
 				cacheData.Saved = true;
 			}
 		}
 	}
 
 	private void apply(string key) {
-		CacheData cacheData = getCacheData (key);
+		CacheData cacheData = getCacheData(key);
 		if (cacheData == null || cacheData.Saved) {
 			return;
 		}
 
 		if (cacheData.Disabled) {
-			deleteFile (key);
-			cacheDict.Remove (key);
+			deleteFile(key);
+			cacheDict.Remove(key);
 		} else {
-			writeFile (key, cacheData.Data);
+			writeFile(key, cacheData.Data);
 			cacheData.Saved = true;
 		}
 	}
@@ -213,19 +217,19 @@ public class DataSerializer {
 	private T readFile<T>(string key) {
 		T data = default(T);
 
-		string filePath = getFilePath (key);
-		if (!File.Exists (filePath)) {
+		string filePath = getFilePath(key);
+		if (!File.Exists(filePath)) {
 			return data;
 		}
 
-		byte[] readBytes = File.ReadAllBytes (filePath);
+		byte[] readBytes = File.ReadAllBytes(filePath);
 		byte[] bytes = new byte[readBytes.Length - 1];
-		Array.Copy (readBytes, 1, bytes, 0, readBytes.Length - 1);
+		Array.Copy(readBytes, 1, bytes, 0, readBytes.Length - 1);
 
-		byte flag = readBytes [0];
+		byte flag = readBytes[0];
 
 		if (cryptKey != null && (flag & (byte)Flags.Crypt) == (byte)Flags.Crypt) {
-			bytes = CryptoUtil.Decrypt (bytes, cryptKey, cryptIv);
+			bytes = CryptoUtil.Decrypt(bytes, cryptKey, cryptIv);
 		}
 
 #if ENABLE_COMPRESS_SERIALIZE_DATA
@@ -234,23 +238,23 @@ public class DataSerializer {
 		}
 #endif
 
-		BinaryFormatter bf = new BinaryFormatter ();
-		using (MemoryStream ms = new MemoryStream (bytes)) {
-			data = (T)bf.Deserialize (ms);
+		BinaryFormatter bf = new BinaryFormatter();
+		using (MemoryStream ms = new MemoryStream(bytes)) {
+			data = (T)bf.Deserialize(ms);
 		}
 
 		return data;
 	}
 
 	private void writeFile(string key, object data) {
-		string filePath = getFilePath (key);
+		string filePath = getFilePath(key);
 
-		using (MemoryStream ms = new MemoryStream ()) {
-			BinaryFormatter bf = new BinaryFormatter ();
-			bf.Serialize (ms, data);
+		using (MemoryStream ms = new MemoryStream()) {
+			BinaryFormatter bf = new BinaryFormatter();
+			bf.Serialize(ms, data);
 
 			byte flag = 0;
-			byte[] bytes = ms.ToArray ();
+			byte[] bytes = ms.ToArray();
 
 #if ENABLE_COMPRESS_SERIALIZE_DATA
 			if (enableCompression) {
@@ -260,24 +264,24 @@ public class DataSerializer {
 #endif
 
 			if (cryptKey != null) {
-				bytes = CryptoUtil.Encrypt (bytes, cryptKey, cryptIv);
+				bytes = CryptoUtil.Encrypt(bytes, cryptKey, cryptIv);
 				flag |= (byte)Flags.Crypt;
 			}
 
 			byte[] writeBytes = new byte[bytes.Length + 1];
-			writeBytes [0] = flag;
-			Array.Copy (bytes, 0, writeBytes, 1, bytes.Length);
-			File.WriteAllBytes (filePath, writeBytes);
+			writeBytes[0] = flag;
+			Array.Copy(bytes, 0, writeBytes, 1, bytes.Length);
+			File.WriteAllBytes(filePath, writeBytes);
 		}
 	}
 
 	private void deleteFile(string key) {
-		string filePath = getFilePath (key);
-		File.Delete (filePath);
+		string filePath = getFilePath(key);
+		File.Delete(filePath);
 	}
 
 	private string getFilePath(string key) {
-		return Path.Combine (savePath, CryptoUtil.Hash (key, CryptoUtil.HashAlgorithm.SHA256));
+		return Path.Combine(savePath, CryptoUtil.Hash(key, CryptoUtil.HashAlgorithm.SHA256));
 	}
 
 

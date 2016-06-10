@@ -12,15 +12,15 @@ public class CryptoUtil {
 	}
 
 	public static byte[] Encrypt(byte[] data, string key, string iv = null) {
-		RijndaelManaged aes = createAES (key, iv);
-		ICryptoTransform encrypt = aes.CreateEncryptor ();
+		RijndaelManaged aes = createAES(key, iv);
+		ICryptoTransform encrypt = aes.CreateEncryptor();
 		return encrypt.TransformFinalBlock(data, 0, data.Length);
 	}
 
 	public static byte[] Decrypt(byte[] data, string key, string iv = null) {
-		RijndaelManaged aes = createAES (key, iv);
-		ICryptoTransform decrypt = aes.CreateDecryptor ();
-		return decrypt.TransformFinalBlock (data, 0, data.Length);
+		RijndaelManaged aes = createAES(key, iv);
+		ICryptoTransform decrypt = aes.CreateDecryptor();
+		return decrypt.TransformFinalBlock(data, 0, data.Length);
 	}
 
 	private static RijndaelManaged createAES(string key, string iv) {
@@ -34,20 +34,20 @@ public class CryptoUtil {
 		return aes;
 	}
 
-	public static string Hash (string srcStr, HashAlgorithm algorithm) {
+	public static string Hash(string srcStr, HashAlgorithm algorithm) {
 
 		System.Security.Cryptography.HashAlgorithm hashAlgorithm = null;
 
 		switch (algorithm) {
-		case HashAlgorithm.MD5:
-			hashAlgorithm = System.Security.Cryptography.MD5.Create ();
-			break;
-		case HashAlgorithm.SHA1:
-			hashAlgorithm = System.Security.Cryptography.SHA1.Create ();
-			break;
-		case HashAlgorithm.SHA256:
-			hashAlgorithm = System.Security.Cryptography.SHA256.Create ();
-			break;
+			case HashAlgorithm.MD5:
+				hashAlgorithm = System.Security.Cryptography.MD5.Create();
+				break;
+			case HashAlgorithm.SHA1:
+				hashAlgorithm = System.Security.Cryptography.SHA1.Create();
+				break;
+			case HashAlgorithm.SHA256:
+				hashAlgorithm = System.Security.Cryptography.SHA256.Create();
+				break;
 		}
 
 		byte[] srcBytes = System.Text.Encoding.UTF8.GetBytes(srcStr);

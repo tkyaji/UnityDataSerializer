@@ -1,4 +1,4 @@
-﻿#if UNITY_EDITOR_OSX
+﻿#if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
 
 using System;
 using System.Runtime.InteropServices;
@@ -17,9 +17,9 @@ public class GZipUtilPlugin {
 		IntPtr ptr = IntPtr.Zero;
 		int size = 0;
 
-		_GZipUtil_compress (data, data.Length, out ptr, out size);
+		_GZipUtil_compress(data, data.Length, out ptr, out size);
 		byte[] resultData = new byte[size];
-		Marshal.Copy (ptr, resultData, 0, size);
+		Marshal.Copy(ptr, resultData, 0, size);
 
 		return resultData;
 	}
@@ -28,9 +28,9 @@ public class GZipUtilPlugin {
 		IntPtr ptr = IntPtr.Zero;
 		int size = 0;
 
-		_GZipUtil_uncompress (data, data.Length, out ptr, out size);
+		_GZipUtil_uncompress(data, data.Length, out ptr, out size);
 		byte[] resultData = new byte[size];
-		Marshal.Copy (ptr, resultData, 0, size);
+		Marshal.Copy(ptr, resultData, 0, size);
 
 		return resultData;
 	}
