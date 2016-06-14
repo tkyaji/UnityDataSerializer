@@ -172,12 +172,6 @@ public class DataSerializer {
 	}
 
 	private void enableEncryption(string key, string iv = null) {
-		key = key.PadRight(32, ' ').Substring(0, 32);
-		if (iv == null) {
-			iv = key;
-		}
-		iv = iv.PadRight(16, ' ').Substring(0, 16);
-
 		cryptKey = key;
 		cryptIv = iv;
 	}

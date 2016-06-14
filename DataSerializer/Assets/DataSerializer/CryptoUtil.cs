@@ -24,6 +24,12 @@ public class CryptoUtil {
 	}
 
 	private static RijndaelManaged createAES(string key, string iv) {
+		key = key.PadRight(32, ' ').Substring(0, 32);
+		if (iv == null) {
+			iv = key;
+		}
+		iv = iv.PadRight(16, ' ').Substring(0, 16);
+
 		RijndaelManaged aes = new RijndaelManaged();
 		aes.BlockSize = 128;
 		aes.KeySize = 128;
