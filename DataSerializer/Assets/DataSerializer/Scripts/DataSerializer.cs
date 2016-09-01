@@ -5,7 +5,6 @@
 using UnityEngine;
 using System;
 using System.IO;
-using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 
@@ -28,8 +27,19 @@ public class DataSerializer {
 	}
 
 	private const string saveDirectory = "serialize_data";
+	private static string savePath {
+		get {
+#if UNITY_ANDROID && !UNITY_EDITOR
+			var currentActivity = new AndroidJavaClass("com.unity3d.player.UnityPlayer").GetStatic<AndroidJavaObject>("currentActivity");
+			var filesDir = currentActivity.Call<AndroidJavaObject>("getFilesDir");
+			var dataDir = filesDir.Call<string>("getCanonicalPath");
+#else
+			var dataDir = Application.persistentDataPath;
+#endif
+			return Path.Combine(dataDir, saveDirectory);
+		}
+	}
 
-	private string savePath;
 	private string cryptKey;
 	private string cryptIv;
 	private bool enableCompression;
@@ -95,7 +105,6 @@ public class DataSerializer {
 
 	private DataSerializer() {
 		Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");
-		savePath = Path.Combine(Application.persistentDataPath, saveDirectory);
 		if (!Directory.Exists(savePath)) {
 			Directory.CreateDirectory(savePath);
 		}

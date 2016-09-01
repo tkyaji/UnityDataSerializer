@@ -339,6 +339,7 @@
 				B2C24AC91C696AB00074763E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B2C24AD81C696C8A0074763E /* Build configuration list for PBXNativeTarget "GZipUtilTest" */ = {
 			isa = XCConfigurationList;
@@ -347,6 +348,7 @@
 				B2C24ADA1C696C8A0074763E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
