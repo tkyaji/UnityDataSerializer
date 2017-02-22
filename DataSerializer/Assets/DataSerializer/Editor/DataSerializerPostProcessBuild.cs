@@ -14,7 +14,7 @@ public class DataSerializerPostProcessBuild {
 		proj.ReadFromString(File.ReadAllText(projPath));
 		string target = proj.TargetGuidByName("Unity-iPhone");
 
-		proj.AddFileToBuild(target, proj.AddFile("usr/lib/libz.1.2.5.tbd", "Frameworks/libz.1.2.5.tbd", PBXSourceTree.Sdk));
+		proj.AddFileToBuild(target, proj.AddFile("usr/lib/libz.tbd", "Frameworks/libz.tbd", PBXSourceTree.Sdk));
 
 		File.WriteAllText(projPath, proj.WriteToString());
 	}
